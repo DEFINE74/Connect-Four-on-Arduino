@@ -175,20 +175,6 @@ void make_turn(byte col){
     }
   }
 }
-void animation_make_turn(byte col){
-  for(int i = 5;i > 0;i--){
-    if(table[col][i] == 0){
-      strip.setPixelColor(i+col*6,player_color[player]);
-      strip.show();
-      tone(13,500);
-      delay(50);
-      noTone(13);
-      delay(50);
-      strip.setPixelColor(i+col*6,0,0,0);
-      strip.show();
-    }
-  }
-}
 //функция отрисовки светодиодов
 void draw_all(){
   strip.clear();
@@ -424,7 +410,6 @@ void loop() {
   if (digitalRead(PIN_TOUCH[0]) == HIGH || digitalRead(PIN_TOUCH[1]) == HIGH || digitalRead(PIN_TOUCH[2]) == HIGH || digitalRead(PIN_TOUCH[3]) == HIGH || digitalRead(PIN_TOUCH[4]) == HIGH || digitalRead(PIN_TOUCH[5]) == HIGH || digitalRead(PIN_TOUCH[6]) == HIGH) {
     for(int i = 0; i < 7; i++){
       if(digitalRead(PIN_TOUCH[i]) == HIGH){
-        animation_make_turn(i);
         make_turn(i);
         draw_all();
         turn_music();
