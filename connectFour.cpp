@@ -182,7 +182,6 @@ void draw_all(){
     for(int j = 0; j < 6; j++) {
       if(table[i][j]>0){
         strip.setPixelColor(j+i*6,player_color[table[i][j]-1]);
-        //Serial.print(player_color[table[i][j]]);
       }
     }
   }
@@ -287,7 +286,7 @@ void turn_music(){
   noTone(13);
 }
 //функция очистки всего поля(перезаписи массива в 0)
-void clear_pole(){
+void clear_table(){
   for(int i = 0; i < 7; i++) {
     for(int j = 0; j < 6; j++) {
       table[i][j]=0;
@@ -336,7 +335,7 @@ void player_win(byte whowin){
 //функция моргания светодиодов при победе
 void flash_dio(byte i, byte j, byte v, byte p) {
   for(byte z=0; z<4; z++){
-    clear_pole();
+    clear_table();
     draw_all();
     delay(300);
     //horizontal, vertical, diagonal
@@ -375,7 +374,7 @@ void loop() {
       if(firstOut) {
         player_win(2);
         win_music();
-        clear_pole();
+        clear_table();
         //delay(400);
         disp1.clear();
         disp2.clear();
@@ -394,7 +393,7 @@ void loop() {
       if(secondOut){
         player_win(1);
         win_music();
-        clear_pole();
+        clear_table();
         //delay(400);
         disp1.clear();
         disp2.clear();
@@ -419,7 +418,7 @@ void loop() {
           //ScorePrint();
           player_win(whowin);
           win_music();
-          clear_pole();
+          clear_table();
           //delay(400);
           disp1.clear();
           disp2.clear();
@@ -428,7 +427,7 @@ void loop() {
         }
         if(nech_check()>0){
           win_music();
-          clear_pole();
+          clear_table();
           disp1.clear();
           disp2.clear();
           ShowScore();
